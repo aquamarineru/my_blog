@@ -1,10 +1,17 @@
 import React from 'react'
+import cl from 'classnames'
+import styles from './article.module.scss'
 
-const Article = () => {
+const Article = ({
+  className,
+  children,
+}) => {
   return (
-    <div>
-      
-    </div>
+    <article
+    className={cl(className, styles.article)}
+    >
+      {children}
+    </article>
   )
 }
 

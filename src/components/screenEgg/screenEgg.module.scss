@@ -1,0 +1,26 @@
+.screenEgg {
+    position: fixed;
+    background: #ffde7d;
+    display: inline-block;
+    padding: 1rem;
+    z-index: 99;
+    cursor: pointer;
+    border: 1px solid #fff;
+    &Right {
+        padding-left: 2rem;
+        transform: translate(calc(100% - 1.9rem), 0);
+        top: 10%;
+        right: 0;
+        transition: transform .5s easy-out;
+    }
+    &Left {
+        padding-right: 1.9rem;
+        transform: translate(calc(-100% + 1.9rem), 0);
+        bottom: 10%;
+        left: 0;
+        transition: transform .5s easy-out;
+    }
+    &:hover {
+        transform: translate(0, 0);
+    }
+}

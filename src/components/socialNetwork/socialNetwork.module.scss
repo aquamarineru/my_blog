@@ -1,0 +1,16 @@
+.list{
+    &Item{
+        margin-bottom: .5em;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+    &Link {
+        transition: opacity .3s;
+        color: #000;
+        font-size: 50px;
+        &:hover {
+            opacity: .6;
+        }
+    }
+} 

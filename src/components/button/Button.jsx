@@ -1,6 +1,7 @@
 import React from 'react'
+import styles from './button.module.scss'
 
-const Button = () => {
+const Button = ({className}) => {
   return (
     <div>
       
