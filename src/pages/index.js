@@ -7,11 +7,31 @@ import Cover from "@/components/cover/Cover"
 import { loadPosts } from "./api/posts"
 import PostGrid from "@/components/postGrid/PostGrid"
 import Post from "@/components/post/Post"
+import Button from "@/components/button/Button"
 
 const LOAD_MORE_STEP = 4
 
 export default function HomePage({ initialPosts, total }) {
   const [posts, setPosts] = useState(initialPosts)
+  const [loadedAmount, setLoadedAmount] = useState(LOAD_MORE_STEP)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const isLoadedButton = total > loadedAmount
+
+  const getMorePosts = async () => {
+    setIsLoading(true)
+    try{
+      const data = await fetch(`/api/posts?start=${loadedAmount}&end=${loadedAmount + LOAD_MORE_STEP}`).then((res) => res.json())
+      setLoadedAmount(loadedAmount + LOAD_MORE_STEP)
+      setPosts([...posts, ...data.posts])
+      setIsLoading(false)
+    }
+    catch(error){
+      console.log(error)
+      setIsLoading(false)
+    }
+  }
+
   console.log(initialPosts)
   return (
     <>
@@ -29,6 +49,12 @@ export default function HomePage({ initialPosts, total }) {
               {...post} />
           ))}
         </PostGrid>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
+          <Button onClick={getMorePosts} disabled={isLoading}>Load more posts ...</Button>
+        </div>
       </Section>
     </>
   )
